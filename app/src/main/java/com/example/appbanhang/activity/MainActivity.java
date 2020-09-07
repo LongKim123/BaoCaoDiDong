@@ -202,8 +202,8 @@ public class MainActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
-                    mangloaisp.add(3,new Loaisp(0, "Thông tin", "http://kinhtevadubao.vn/uploads/images/news/1515687283_news_10383.jpg"));
-                    mangloaisp.add(4,new Loaisp(0,"Liên Hệ ","https://i.pinimg.com/originals/57/cf/21/57cf2127a1b9c8fdb334e5860fc22f61.png"));
+                    mangloaisp.add(5,new Loaisp(0, "Thông tin", "http://kinhtevadubao.vn/uploads/images/news/1515687283_news_10383.jpg"));
+                    mangloaisp.add(6,new Loaisp(0,"Liên Hệ ","https://i.pinimg.com/originals/57/cf/21/57cf2127a1b9c8fdb334e5860fc22f61.png"));
 
                 }
             }
@@ -232,9 +232,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void ActionViewFlipper() {
         ArrayList<String> mangquangcao=new ArrayList<>();
-        mangquangcao.add("https://cdn.tgdd.vn/Files/2018/08/01/1105915/oppo_f9_1_800x450.jpg");
-        mangquangcao.add("https://intoroigiare.com.vn/wp-content/uploads/qc5.jpg");
-        mangquangcao.add("https://hoanghamobile.com/tin-tuc/wp-content/uploads/2019/04/quang-cao-realme-3-1.jpg");
+        mangquangcao.add("https://lavenderstudio.com.vn/wp-content/uploads/2017/03/chup-thuc-an-dep.jpg");
+        mangquangcao.add("https://www.designbold.com/academy/wp-content/uploads/2018/08/th%E1%BB%A9c-%C4%83n-30-3.png");
+        mangquangcao.add("https://agotourist.com/wp-content/uploads/2016/08/an-gi-mon-ngon-da-lat.jpg");
 
         for(int i=0;i<mangquangcao.size();i++){
             ImageView imageView= new ImageView(getApplicationContext());

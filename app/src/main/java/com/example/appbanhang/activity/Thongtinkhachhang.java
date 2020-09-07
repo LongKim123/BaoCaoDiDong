@@ -2,7 +2,6 @@ package com.example.appbanhang.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,10 +18,6 @@ import com.android.volley.toolbox.Volley;
 import com.example.appbanhang.R;
 import com.example.appbanhang.ultil.CheckConnection;
 import com.example.appbanhang.ultil.Server;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -63,55 +58,11 @@ public class Thongtinkhachhang extends AppCompatActivity {
                     StringRequest  stringRequest= new StringRequest(Request.Method.POST, Server.Duongdandonhang, new Response.Listener<String>() {
                         @Override
                         public void onResponse(final String madonhang) {
-                            Log.d("madonhang",madonhang);
-                            if(Integer.parseInt(madonhang)>0){
-                                RequestQueue queue=Volley.newRequestQueue(getApplicationContext());
-                                StringRequest request= new StringRequest(Request.Method.POST,Server.Duongdanchitietdonhang, new Response.Listener<String>() {
-                                    @Override
-                                    public void onResponse(String response) {
-                                        if(response.equals("1")){
-                                            MainActivity.manggiohang.clear();
-                                            CheckConnection.ShowToast_Short(getApplicationContext(),"Ban Đã Đặt Hàng Thành Công");
-                                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                                            startActivity(intent);
-                                            CheckConnection.ShowToast_Short(getApplicationContext(),"Xin Mời Tiếp Tục Chon Và Mua Hàng");
-                                        }
-                                        else {
-                                            CheckConnection.ShowToast_Short(getApplicationContext(),"Giỏ Hàng Đã Bi Lỗi");
-
-                                        }
-                                    }
-                                }, new Response.ErrorListener() {
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-
-                                    }
-                                }){
-                                    @Override
-                                    protected Map<String, String> getParams() throws AuthFailureError {
-                                        JSONArray jsonArray = new JSONArray();
-                                        for(int i=0;i<MainActivity.manggiohang.size();i++){
-                                            JSONObject jsonObject1 =new JSONObject();
-                                            try {
-
-                                                jsonObject1.put("madonhang",madonhang);
-                                                jsonObject1.put("masanpham",MainActivity.manggiohang.get(i).getIdsp());
-                                                jsonObject1.put("tensanpham",MainActivity.manggiohang.get(i).getTensp());
-                                                jsonObject1.put("giasanpham",MainActivity.manggiohang.get(i).getGiasp());
-                                                jsonObject1.put("soluongsanpham",MainActivity.manggiohang.get(i).getSoluongsp());
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
-                                            jsonArray.put(jsonObject1);
-                                        }
-                                        HashMap<String,String>hashMap=new HashMap<String, String>();
-                                        hashMap.put("json",jsonArray.toString());
-                                        return hashMap;
-                                    }
-
-                                };
-                                queue.add(request);
-                            }
+                            MainActivity.manggiohang.clear();
+                            CheckConnection.ShowToast_Short(getApplicationContext(),"Xin Chúc Mừng Bạn Đã Đặt Hàng Thành Công");
+                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                            startActivity(intent);
+                            CheckConnection.ShowToast_Short(getApplicationContext(),"Xin Mời Tiếp Tục Chon Và Mua Hàng");
                         }
                     }, new Response.ErrorListener() {
                         @Override
