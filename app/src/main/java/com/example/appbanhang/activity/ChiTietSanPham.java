@@ -36,7 +36,7 @@ public class ChiTietSanPham extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chi_tiet_san_pham);
-        Anhxa();
+        addViews();
         ActionToolBar();
         GetInformation();
         CatchEventSpiner();
@@ -115,7 +115,7 @@ public class ChiTietSanPham extends AppCompatActivity {
         });
     }
 
-    private void Anhxa() {
+    private void addViews() {
         toolbarChitiet=(Toolbar) findViewById(R.id.toolbarchitietsanpham);
         imgChitiet= (ImageView) findViewById(R.id.imageviewchitietsanpham);
         txtten= (TextView) findViewById(R.id.textviewtenchitietsanpham);

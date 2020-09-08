@@ -16,23 +16,51 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.Toolbar
-                app:title="Trang Chính"
+                app:title="Trang Chủ"
                 android:id="@+id/toolbarmanhinhchinh"
-                android:background="#4665ce"
+                android:background="#1C4D83"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize">
 
 
             </androidx.appcompat.widget.Toolbar>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:background="@drawable/search_bar">
+
+                <EditText
+                    android:id="@+id/et_search"
+                    android:layout_width="300dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="40dp"
+                    android:hint="Bạn muốn ăn món gì?"
+                    android:gravity="center"
+                    android:background="@null"
+                    android:textSize="25sp"
+                    android:layout_gravity="center"/>
+
+                <ImageButton
+                    android:id="@+id/btnSearch"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/ic_loupe"
+                    android:background="@drawable/ib_circle"/>
+            </LinearLayout>
             <ViewFlipper
                 android:id="@+id/viewlipper"
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="150dp">
 
             </ViewFlipper>
+
             <LinearLayout
                 android:orientation="vertical"
-                android:background="#5992d2"
+                android:background="#C7E1FD"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -40,12 +68,41 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="Món ăn nổi bật"
+                    android:text="MÓN ĂN NỔI BẬT"
                     android:textColor="#a71a04"
-                    android:textSize="20sp"
+                    android:layout_gravity="center"
+                    android:textSize="30sp"
                     android:textStyle="bold">
 
                 </TextView>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+                    <ImageButton
+                        android:id="@+id/btnLau"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/lau"/>
+
+                    <ImageButton
+                        android:id="@+id/btnDAN"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/doannhanh"/>
+
+                    <ImageButton
+                        android:id="@+id/btnPho"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/pho"/>
+                    <ImageButton
+                        android:id="@+id/btnNuoc"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/douong"/>
+
+                </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_marginTop="5dp"

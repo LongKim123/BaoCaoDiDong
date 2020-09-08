@@ -9,6 +9,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ViewFlipper;
@@ -47,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
     Toolbar tool ;
     Toolbar toolbar;
-    Button button;
+    Button btnSearch;
+    ImageButton btnLau, btnDAN, btnPho, btnNuoc;
     ViewFlipper viewFlipper;
     RecyclerView recyclerViewmanhinhchinh;
     NavigationView navigationView;
@@ -73,19 +75,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Anhxa();
+        addViews();
         if(CheckConnection.haveNetworkConnection(getApplicationContext())) {
             ActionBar();
             ActionViewFlipper();
             GetDuLieuLoaisp();
             GetDuLieuSPMoiNhat();
-            CatchOnItemListView();
+            addEvents();
+
         }else {
             CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại kết nối");
             finish();
         }
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -103,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void CatchOnItemListView() {
+    private void addEvents() {
         listViewmanhinhchinh.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -120,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 1:
                         if(CheckConnection.haveNetworkConnection(getApplicationContext())){
-                            Intent intent= new Intent(MainActivity.this,DienThoaiActivity.class);
+                            Intent intent= new Intent(MainActivity.this, MonLauActivity.class);
                             intent.putExtra("idloaisanpham",mangloaisp.get(i).getId());
                             startActivity(intent);
                         }
@@ -131,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 2:
                         if(CheckConnection.haveNetworkConnection(getApplicationContext())){
-                            Intent intent= new Intent(MainActivity.this,LapTopActivity.class);
+                            Intent intent= new Intent(MainActivity.this, DoAnNhanhActivity.class);
                             intent.putExtra("idloaisanpham",mangloaisp.get(2).getId());
                             startActivity(intent);
                         }
@@ -140,7 +144,48 @@ public class MainActivity extends AppCompatActivity {
                         }
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
+                    case 9:
+                        if(CheckConnection.haveNetworkConnection(getApplicationContext())){
+                            Intent intent= new Intent(MainActivity.this,Quanlysanpham.class);
+                            intent.putExtra("idloaisanpham",mangloaisp.get(i).getId());
+                            startActivity(intent);
+                        }
+                        else{
+                            CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn kiểm tra lại kết nối");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+
                 }
+            }
+        });
+
+        btnLau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(CheckConnection.haveNetworkConnection(getApplicationContext())){
+                    Intent intent= new Intent(MainActivity.this, MonLauActivity.class);
+                    intent.putExtra("idloaisanpham",1);
+                    startActivity(intent);
+                }
+                else{
+                    CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn kiểm tra lại kết nối");
+                }
+                drawerLayout.closeDrawer(GravityCompat.START);
+            }
+        });
+        btnDAN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(CheckConnection.haveNetworkConnection(getApplicationContext())){
+                    Intent intent= new Intent(MainActivity.this, DoAnNhanhActivity.class);
+                    intent.putExtra("idloaisanpham",2);
+                    startActivity(intent);
+                }
+                else{
+                    CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn kiểm tra lại kết nối");
+                }
+                drawerLayout.closeDrawer(GravityCompat.START);
             }
         });
     }
@@ -202,8 +247,8 @@ public class MainActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
-                    mangloaisp.add(5,new Loaisp(0, "Thông tin", "http://kinhtevadubao.vn/uploads/images/news/1515687283_news_10383.jpg"));
-                    mangloaisp.add(6,new Loaisp(0,"Liên Hệ ","https://i.pinimg.com/originals/57/cf/21/57cf2127a1b9c8fdb334e5860fc22f61.png"));
+                    mangloaisp.add(7,new Loaisp(0, "Thông tin", "http://kinhtevadubao.vn/uploads/images/news/1515687283_news_10383.jpg"));
+                    mangloaisp.add(8,new Loaisp(0,"Liên Hệ ","https://i.pinimg.com/originals/57/cf/21/57cf2127a1b9c8fdb334e5860fc22f61.png"));
 
                 }
             }
@@ -232,9 +277,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void ActionViewFlipper() {
         ArrayList<String> mangquangcao=new ArrayList<>();
-        mangquangcao.add("https://lavenderstudio.com.vn/wp-content/uploads/2017/03/chup-thuc-an-dep.jpg");
-        mangquangcao.add("https://www.designbold.com/academy/wp-content/uploads/2018/08/th%E1%BB%A9c-%C4%83n-30-3.png");
-        mangquangcao.add("https://agotourist.com/wp-content/uploads/2016/08/an-gi-mon-ngon-da-lat.jpg");
+        mangquangcao.add("https://png.pngtree.com/thumb_back/fw800/back_our/20190621/ourmid/pngtree-tmall-taobao-gourmet-food-festival-banner-template-image_192133.jpg");
+        mangquangcao.add("https://png.pngtree.com/thumb_back/fh260/back_our/20190621/ourmid/pngtree-winter-spicy-hot-pot-texture-black-banner-image_181035.jpg");
+        mangquangcao.add("https://ihawa.com.vn/uploads/dichvu/1493333652_Banner_Web_01_Nuoc%20Ngot.jpg");
 
         for(int i=0;i<mangquangcao.size();i++){
             ImageView imageView= new ImageView(getApplicationContext());
@@ -253,24 +298,28 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private void Anhxa(){
+    private void addViews(){
         //toolbar = (Toolbar) findViewById(R.id.toolbarmanhinhchinh);
         toolbar=(Toolbar) findViewById(R.id.toolbarmanhinhchinh) ;
         viewFlipper =(ViewFlipper) findViewById(R.id.viewlipper);
         recyclerViewmanhinhchinh=(RecyclerView) findViewById(R.id.recyclerview);
         navigationView=(NavigationView) findViewById(R.id.navigation);
         listViewmanhinhchinh=(ListView) findViewById(R.id.listviewmanhinhchinh);
+        btnLau = findViewById(R.id.btnLau);
+        btnDAN = findViewById(R.id.btnDAN);
+        btnNuoc = findViewById(R.id.btnNuoc);
+        btnPho = findViewById(R.id.btnPho);
         drawerLayout=findViewById(R.id.drawerlayout);
         mangloaisp= new ArrayList<>();
         loaispAdapter= new LoaispAdapter(mangloaisp,getApplicationContext());
         listViewmanhinhchinh.setAdapter(loaispAdapter);
-       mangloaisp.add(0,new Loaisp(0,"Trang Chính ","https://laptopgiasi.vn/wp-content/uploads/2017/09/icon-trang-chu-laptopgiasi.vn_.png"));
+        mangloaisp.add(0,new Loaisp(0,"Trang Chính ","https://laptopgiasi.vn/wp-content/uploads/2017/09/icon-trang-chu-laptopgiasi.vn_.png"));
 
      //   mangloaisp.add(2,new Loaisp(0, "Thông Tin", "http://kinhtevadubao.vn/uploads/images/news/1515687283_news_10383.jpg"));
         mangsanpham= new ArrayList<>();
         sanphamAdapter= new SanphamAdapter(mangsanpham,getApplicationContext());
         recyclerViewmanhinhchinh.setHasFixedSize(true);
-        recyclerViewmanhinhchinh.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
+        recyclerViewmanhinhchinh.setLayoutManager(new GridLayoutManager(getApplicationContext(),1));
         recyclerViewmanhinhchinh.setAdapter(sanphamAdapter);
         if(manggiohang!=null){
 

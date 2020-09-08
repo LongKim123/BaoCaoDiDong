@@ -15,7 +15,7 @@
             android:layout_margin="5dp"
             android:id="@+id/img_giohang"
             android:layout_width="match_parent"
-            android:layout_height="130dp" />
+            android:layout_height="150dp" />
     </LinearLayout>
     <LinearLayout
         android:gravity="center"
@@ -28,7 +28,7 @@
             android:textColor="@android:color/black"
             android:text="Tên Giỏ Hàng"
             android:id="@+id/tv_tengiohang"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -43,13 +43,13 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <Button
+
+            <ImageButton
                 android:id="@+id/btn_minus"
-                android:textSize="30sp"
-                android:text="-"
+                android:background="@drawable/icontru"
                 android:layout_marginTop="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
             <Button
                 android:background="@null"
                 android:id="@+id/btn_values"
@@ -58,14 +58,19 @@
                 android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-            <Button
+            <ImageButton
                 android:id="@+id/btn_plus"
-                android:textSize="30sp"
-                android:text="+"
+                android:background="@drawable/iconcong"
                 android:layout_marginTop="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
         </LinearLayout>
+        <Button
+            android:id="@+id/btn_xoamon"
+            android:text="Xóa Món"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
 </LinearLayout>

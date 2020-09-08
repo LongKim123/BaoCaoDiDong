@@ -1,16 +1,13 @@
 package com.example.appbanhang.activity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -23,20 +20,23 @@ public class Giohang extends AppCompatActivity {
     ListView lvgiohang;
     TextView txtthongbao;
     static TextView txttongtien;
-    Button btnthanhToan,btntieptucmua;
+    Button btnthanhToan,btntieptucmua,btnxoamon;
     Toolbar toolbargiohang;
      GiohangAdapter gioHangAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_giohang);
-        Anhxa();
+        addViews();
         ActionToolbar();
         CheckData();
         EventUltil();
-        CactChOnItemListView();
+       //CactChOnItemListView();
+        //chonxoa();
         eventButton();
     }
+
+
 
     private void eventButton() {
 
@@ -47,6 +47,7 @@ public class Giohang extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         btnthanhToan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,47 +63,15 @@ public class Giohang extends AppCompatActivity {
     }
 
     private void CactChOnItemListView() {
-        lvgiohang.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        btnxoamon.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, final View view, int position, long l) {
+            public boolean onLongClick(View view) {
+                gioHangAdapter.notifyDataSetChanged();
 
-                final AlertDialog.Builder buidlder=new AlertDialog.Builder(Giohang.this);
-                buidlder.setTitle("Xác nhận xóa");
-                buidlder.setMessage("Bạn có chắc chắn muốn xóa sản phẩm này không ?");
-                buidlder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int which) {
-                        if(MainActivity.manggiohang.size()<=0){
-                            txtthongbao.setVisibility(View.VISIBLE);
-
-                        }else{
-                            MainActivity.manggiohang.remove(position);
-                            gioHangAdapter.notifyDataSetChanged();
-                            EventUltil();
-                            if(MainActivity.manggiohang.size()<=0){
-                                txtthongbao.setVisibility(View.VISIBLE);
-                            }
-                            else{
-                                txtthongbao.setVisibility(View.INVISIBLE);
-                                gioHangAdapter.notifyDataSetChanged();
-                                EventUltil();
-                            }
-                        }
-                    }
-                });
-                buidlder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        gioHangAdapter.notifyDataSetChanged();
-                        EventUltil();
-                    }
-                });
-                AlertDialog alertDialog=buidlder.create();
-                alertDialog.show();
-
-                return true;
+                return false;
             }
         });
+
     }
 
 
@@ -111,9 +80,11 @@ public class Giohang extends AppCompatActivity {
         long tongtien=0;
         for(int i=0;i<MainActivity.manggiohang.size();i++){
             tongtien+=MainActivity.manggiohang.get(i).getGiasp();
+
         }
         DecimalFormat decimalFomat=new DecimalFormat("###,###,###");
         txttongtien.setText(decimalFomat.format(tongtien)+" Đ");
+
 
     }
 
@@ -142,14 +113,15 @@ public class Giohang extends AppCompatActivity {
         });
     }
 
-    private void Anhxa() {
+    private void addViews() {
         lvgiohang= (ListView) findViewById(R.id.listviewgiohang);
         txtthongbao= (TextView) findViewById(R.id.textviewthongbao);
         txttongtien= (TextView) findViewById(R.id.textviewtongtien);
         btnthanhToan= (Button) findViewById(R.id.buttonthanhtoangiohang );
+        btnxoamon=(Button) findViewById(R.id.btn_xoamon);
         btntieptucmua= (Button) findViewById(R.id.buttontieptucmuahang);
         toolbargiohang= (Toolbar) findViewById(R.id.toolbargiohang);
-        gioHangAdapter=new GiohangAdapter(Giohang.this,MainActivity.manggiohang);
+        gioHangAdapter=new GiohangAdapter(getApplicationContext(),MainActivity.manggiohang);
         lvgiohang.setAdapter(gioHangAdapter);
 
     }

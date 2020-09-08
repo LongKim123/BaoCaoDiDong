@@ -4,9 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.appbanhang.R;
@@ -20,6 +23,8 @@ import java.util.ArrayList;
 public class GiohangAdapter extends BaseAdapter {
     Context context;
     ArrayList<Giohang> arraygiohang;
+    ArrayAdapter<Giohang> adaptergiohang;
+
 
     public GiohangAdapter(Context context, ArrayList<Giohang> arraygiohang) {
         this.context = context;
@@ -33,23 +38,25 @@ public class GiohangAdapter extends BaseAdapter {
 
 
     @Override
-    public Object getItem(int i) {
-        return arraygiohang.get(i);
+    public Object getItem(int position) {
+        return arraygiohang.get(position);
     }
 
     @Override
-    public long getItemId(int i) {
-        return i;
+    public long getItemId(int position) {
+        return position;
     }
     public class ViewHoler{
         public TextView txttengiohang,txtgiagiohang;
         public ImageView imggiohang;
-        public Button  btnminus,btnvalues,btnplus;
+        public Button  btnvalues,btnxoamon;
+        public ImageButton btnminus, btnplus;
+        public ListView lvgiohang;
     }
 
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int  i, View view, ViewGroup viewGroup) {
         ViewHoler viewHoler=null;
         if(view==null){
             viewHoler= new ViewHoler();
@@ -58,10 +65,15 @@ public class GiohangAdapter extends BaseAdapter {
             viewHoler.txttengiohang=(TextView)view.findViewById(R.id.tv_tengiohang);
             viewHoler.txtgiagiohang=(TextView) view.findViewById(R.id.tv_giagiohang);
             viewHoler.imggiohang=(ImageView) view.findViewById(R.id.img_giohang);
-            viewHoler.btnminus=(Button) view.findViewById(R.id.btn_minus);
-            viewHoler.btnplus= (Button) view.findViewById(R.id.btn_plus);
+            viewHoler.btnminus=(ImageButton) view.findViewById(R.id.btn_minus);
+            viewHoler.btnplus= (ImageButton) view.findViewById(R.id.btn_plus);
             viewHoler.btnvalues=(Button) view.findViewById(R.id.btn_values);
+            viewHoler.btnxoamon=(Button) view.findViewById(R.id.btn_xoamon);
+            viewHoler.lvgiohang=(ListView) view.findViewById(R.id.listviewgiohang) ;
+
+
             view.setTag(viewHoler);
+
         }
         else{
             viewHoler= (ViewHoler) view.getTag();
@@ -70,7 +82,7 @@ public class GiohangAdapter extends BaseAdapter {
         Giohang giohang=(Giohang) getItem(i);
         viewHoler.txttengiohang.setText(giohang.getTensp());
         DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
-        viewHoler.txtgiagiohang.setText(decimalFormat.format(giohang.getGiasp())+" Đ");
+        viewHoler.txtgiagiohang.setText(decimalFormat.format(giohang.getGiasp())+" VNĐ");
         Picasso.with(context).load(giohang.getHinhsp())
                 .placeholder(R.drawable.noimage)
                 .error(R.drawable.error)
@@ -107,7 +119,7 @@ public class GiohangAdapter extends BaseAdapter {
                 long giamoinhat=(giaht*slmoinhat)/slht;
                 MainActivity.manggiohang.get(i).setGiasp(giamoinhat);
                 DecimalFormat decimalFormat =new DecimalFormat("###,###,###");
-                finalViewHoler.txtgiagiohang.setText(decimalFormat.format(giamoinhat)+" Đ");
+                finalViewHoler.txtgiagiohang.setText(decimalFormat.format(giamoinhat)+" VNĐ");
                 com.example.appbanhang.activity.Giohang.EventUltil();
 
                 if(slmoinhat>9){
@@ -115,11 +127,32 @@ public class GiohangAdapter extends BaseAdapter {
                     finalViewHoler.btnminus.setVisibility(View.VISIBLE);
                     finalViewHoler.btnvalues.setText(String.valueOf(slmoinhat));
                 }
+
                 else{
                     finalViewHoler.btnplus.setVisibility(View.VISIBLE);
                     finalViewHoler.btnminus.setVisibility(View.VISIBLE);
                     finalViewHoler.btnvalues.setText(String.valueOf(slmoinhat));
                 }
+            }
+        });
+        viewHoler.btnxoamon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int slmoinhat=Integer.parseInt(finalViewHoler.btnvalues.getText().toString())-1;
+                int slht= MainActivity.manggiohang.get(i).getSoluongsp();
+                long giaht=MainActivity.manggiohang.get(i).getGiasp();
+
+                // finalViewHoler.setText(slmoi+"");
+                MainActivity.manggiohang.get(i).setSoluongsp(slmoinhat);
+                long giamoinhat=0;
+                MainActivity.manggiohang.get(i).setGiasp(giamoinhat);
+                DecimalFormat decimalFormat =new DecimalFormat("###,###,###");
+                finalViewHoler.txtgiagiohang.setText(decimalFormat.format(giamoinhat)+" Đ");
+                com.example.appbanhang.activity.Giohang.EventUltil();
+                MainActivity.manggiohang.remove(i);
+
+
+
 
 
             }
@@ -127,6 +160,7 @@ public class GiohangAdapter extends BaseAdapter {
         viewHoler.btnminus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 int slmoinhat=Integer.parseInt(finalViewHoler.btnvalues.getText().toString())-1;
                 int slht= MainActivity.manggiohang.get(i).getSoluongsp();
                 long giaht=MainActivity.manggiohang.get(i).getGiasp();
@@ -138,6 +172,9 @@ public class GiohangAdapter extends BaseAdapter {
                 DecimalFormat decimalFormat =new DecimalFormat("###,###,###");
                 finalViewHoler.txtgiagiohang.setText(decimalFormat.format(giamoinhat)+" Đ");
                 com.example.appbanhang.activity.Giohang.EventUltil();
+
+
+
 
                 if(slmoinhat<2){
                     finalViewHoler.btnminus.setVisibility(View.INVISIBLE);

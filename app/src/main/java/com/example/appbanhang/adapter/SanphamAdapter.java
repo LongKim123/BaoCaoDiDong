@@ -42,7 +42,7 @@ public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ItemHold
             Sanpham sanpham= arraysanpham.get(position);
             holder.txttensanpham.setText(sanpham.getTensanpham());
             DecimalFormat decimalFormat= new DecimalFormat("###,###,###");
-            holder.txtgiasanpham.setText("Giá: " + decimalFormat.format(sanpham.getGiasanpham())+"Đ");
+            holder.txtgiasanpham.setText("Giá: " + decimalFormat.format(sanpham.getGiasanpham())+" VNĐ");
             Picasso.with(context).load(sanpham.getHinhanhsanpham())
                     .placeholder(R.drawable.error)
                     .error(R.drawable.error)

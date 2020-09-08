@@ -30,7 +30,7 @@ public class Thongtinkhachhang extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thongtinkhachhang);
-        AnhXa();
+        addViews();
         btntrove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,7 +45,6 @@ public class Thongtinkhachhang extends AppCompatActivity {
             CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại kết nối");
         }
     }
-
     private void EvenButton() {
         btnxacnhan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +91,7 @@ public class Thongtinkhachhang extends AppCompatActivity {
         });
     }
 
-    private void AnhXa() {
+    private void addViews() {
         edttenkhachhang= (EditText) findViewById(R.id.edittexttenkhachhang);
         edtemail= (EditText) findViewById(R.id.edittextemail);
         edtsdt= (EditText) findViewById(R.id.edittextsdt);

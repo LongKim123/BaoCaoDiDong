@@ -8,35 +8,33 @@
     tools:context=".activity.ChiTietSanPham">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarchitietsanpham"
-        android:background="@android:color/holo_blue_bright"
+        android:background="#1C4D83"
         android:titleTextColor="@android:color/white"
         app:title="Chi Tiết Sản Phẩm"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize">
     </androidx.appcompat.widget.Toolbar>
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
+        android:background="#C7E1FD"
+        android:gravity="center"
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/imageviewchitietsanpham"
             android:layout_margin="14dp"
-            android:layout_width="150dp"
-            android:layout_height="150dp" />
-
-        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:orientation="vertical">
+            android:layout_height="200dp" />
 
             <TextView
                 android:id="@+id/textviewtenchitietsanpham"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:text="Tên Sản Phẩm"
                 android:textColor="@android:color/black"
-                android:textSize="20dp" />
+                android:textStyle="bold"
+                android:textSize="30dp" />
 
             <TextView
                 android:id="@+id/textviewgiachitietsanpham"
@@ -47,39 +45,52 @@
                 android:textColor="@android:color/holo_red_dark"
                 android:textSize="20sp" />
 
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="79dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/spiner"
-                android:padding="10dp"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Số lượng: "
+                    android:textColor="#0F0E10"
+                    android:textSize="15sp"/>
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="50dp"
+                    android:layout_height="25dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/spiner"
+                    android:padding="5dp">
 
-                >
+                </Spinner>
+            </LinearLayout>
 
-            </Spinner>
 
             <Button
                 android:id="@+id/buttondatmua"
-                android:layout_width="match_parent"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
+                android:background="#347C26"
                 android:gravity="center"
-                android:text="thêm giỏ hàng"
-                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:text="Thêm vào giỏ hàng"
+                android:textColor="#E5E5ED"
                 android:textSize="15sp" />
-        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
+        android:background="#C7E1FD"
         android:layout_height="match_parent">
         <TextView
-            android:text="Mô Tả Chi Tiết Sản Phẩm"
-            android:textColor="@android:color/holo_green_light"
+            android:text="MÔ TẢ"
+            android:layout_gravity="center"
+            android:textColor="@android:color/primary_text_light"
             android:layout_marginTop="30dp"
             android:textSize="25sp"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <ScrollView
