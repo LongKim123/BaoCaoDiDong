@@ -33,7 +33,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/et_search"
+                    android:id="@+id/editsearch"
                     android:layout_width="300dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
@@ -85,13 +85,13 @@
                     <ImageButton
                         android:id="@+id/btnLau"
                         android:layout_width="100dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="85dp"
                         android:background="@drawable/lau" />
 
                     <ImageButton
                         android:id="@+id/btnDAN"
                         android:layout_width="100dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="85dp"
                         android:background="@drawable/doannhanh" />
 
                     <ImageButton

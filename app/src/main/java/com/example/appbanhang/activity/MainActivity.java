@@ -9,6 +9,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -42,6 +43,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     // toolbar=(Toolbar) findViewById(R.id.toolbarmanhinhchinh);
@@ -57,7 +59,11 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ArrayList<Loaisp> mangloaisp;
     LoaispAdapter loaispAdapter;
+    ImageButton btnsearch;
+    EditText edtsearch;
+
     int id=0;
+    String tensanpham="";
     String tenloaiSP="";
     String hinhanhloaisp="";
     ArrayList<Sanpham> mangsanpham;
@@ -83,12 +89,20 @@ public class MainActivity extends AppCompatActivity {
             GetDuLieuSPMoiNhat();
             addEvents();
 
+
         }else {
             CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại kết nối");
             finish();
         }
-
+        btnsearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
 
 
     @Override
@@ -309,6 +323,8 @@ public class MainActivity extends AppCompatActivity {
         btnDAN = findViewById(R.id.btnDAN);
         btnNuoc = findViewById(R.id.btnNuoc);
         btnPho = findViewById(R.id.btnPho);
+        btnsearch=findViewById(R.id.btnSearch);
+        edtsearch=findViewById(R.id.editsearch);
         drawerLayout=findViewById(R.id.drawerlayout);
         mangloaisp= new ArrayList<>();
         loaispAdapter= new LoaispAdapter(mangloaisp,getApplicationContext());
