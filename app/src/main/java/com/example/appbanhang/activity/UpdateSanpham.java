@@ -18,6 +18,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appbanhang.R;
 import com.example.appbanhang.model.Sanpham;
+import com.example.appbanhang.ultil.Server;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +27,8 @@ public class UpdateSanpham extends AppCompatActivity {
     EditText suaten,suahinhanh,suagia,suaidsanpham,suamota;
     Button btnsuamon,btnback;
     int idss=0;
-    String urlupdate="http://192.168.1.215/server/update.php";
+    String urlupdate =Server.suasanpham;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

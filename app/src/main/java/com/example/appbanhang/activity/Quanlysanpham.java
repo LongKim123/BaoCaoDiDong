@@ -38,7 +38,8 @@ public class Quanlysanpham extends AppCompatActivity {
     QuanlysanphamAdapter quanlysanphamAdapter;
     Toolbar toolbarquanly ;
     ListView lvquanly;
-    String urldelete="http://192.168.1.215/server/xoasanpham.php";
+    //215
+    String urldelete=Server.xoasanpham;
     int iddt=0;
     int page=1;
     int idssp=0;

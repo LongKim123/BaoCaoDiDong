@@ -129,7 +129,7 @@ public class DoAnNhanhActivity extends AppCompatActivity {
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                HashMap<String,String> param=new HashMap<String, String>();
+                HashMap<String,String> param=new HashMap<>();
                 param.put("idsanpham", String.valueOf(idDAN));
                 return param;
             }

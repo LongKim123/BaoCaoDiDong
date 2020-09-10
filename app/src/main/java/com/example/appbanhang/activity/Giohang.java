@@ -88,7 +88,7 @@ public class Giohang extends AppCompatActivity {
 
     }
 
-    private void CheckData() {
+    public void CheckData() {
         if(MainActivity.manggiohang.size()<=0){
             gioHangAdapter.notifyDataSetChanged();
             txtthongbao.setVisibility(View.VISIBLE);
@@ -121,7 +121,7 @@ public class Giohang extends AppCompatActivity {
         btnxoamon=(Button) findViewById(R.id.btn_xoamon);
         btntieptucmua= (Button) findViewById(R.id.buttontieptucmuahang);
         toolbargiohang= (Toolbar) findViewById(R.id.toolbargiohang);
-        gioHangAdapter=new GiohangAdapter(getApplicationContext(),MainActivity.manggiohang);
+        gioHangAdapter=new GiohangAdapter(Giohang.this,MainActivity.manggiohang);
         lvgiohang.setAdapter(gioHangAdapter);
 
     }

@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
-                    case 9:
+                    case 7:
                         if(CheckConnection.haveNetworkConnection(getApplicationContext())){
                             Intent intent= new Intent(MainActivity.this,Quanlysanpham.class);
                             intent.putExtra("idloaisanpham",mangloaisp.get(i).getId());
@@ -247,8 +247,8 @@ public class MainActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
-                    mangloaisp.add(7,new Loaisp(0, "Thông tin", "http://kinhtevadubao.vn/uploads/images/news/1515687283_news_10383.jpg"));
-                    mangloaisp.add(8,new Loaisp(0,"Liên Hệ ","https://i.pinimg.com/originals/57/cf/21/57cf2127a1b9c8fdb334e5860fc22f61.png"));
+                    mangloaisp.add(8,new Loaisp(0, "Thông tin", "http://kinhtevadubao.vn/uploads/images/news/1515687283_news_10383.jpg"));
+                    mangloaisp.add(9,new Loaisp(0,"Liên Hệ ","https://i.pinimg.com/originals/57/cf/21/57cf2127a1b9c8fdb334e5860fc22f61.png"));
 
                 }
             }

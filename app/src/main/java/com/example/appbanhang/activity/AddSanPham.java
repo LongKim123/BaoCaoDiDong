@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appbanhang.R;
+import com.example.appbanhang.ultil.Server;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +26,7 @@ import java.util.Map;
 public class AddSanPham extends AppCompatActivity {
     EditText edttensanpham,edthinhanh,edtgiasanpham,edtidsanpham,edtmotasanpham;
     Button btnthem,btnhuy;
-    String urlinsert="http://192.168.1.215/server/insert.php";
+    String urlinsert= Server.themsanpham;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

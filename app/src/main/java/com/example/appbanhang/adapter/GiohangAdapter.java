@@ -21,12 +21,12 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class GiohangAdapter extends BaseAdapter {
-    Context context;
+    com.example.appbanhang.activity.Giohang context;
     ArrayList<Giohang> arraygiohang;
     ArrayAdapter<Giohang> adaptergiohang;
 
 
-    public GiohangAdapter(Context context, ArrayList<Giohang> arraygiohang) {
+    public GiohangAdapter(com.example.appbanhang.activity.Giohang context, ArrayList<Giohang> arraygiohang) {
         this.context = context;
         this.arraygiohang = arraygiohang;
     }
@@ -150,6 +150,7 @@ public class GiohangAdapter extends BaseAdapter {
                 finalViewHoler.txtgiagiohang.setText(decimalFormat.format(giamoinhat)+" Đ");
                 com.example.appbanhang.activity.Giohang.EventUltil();
                 MainActivity.manggiohang.remove(i);
+                context.CheckData();
 
 
 
