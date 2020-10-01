@@ -17,6 +17,7 @@ public class Server {
     public static String suasanpham = localhost + "/server/update.php";
     public static String timkiemsanpham = localhost + "/server/search.php";
     public static String login = localhost + "/server/login.php";
+    public static String chitiet = localhost + "/server/chitiet.php";
 
 
     public static String Duongdanquanly = localhost + "/server/quanlysanpham.php?page=";

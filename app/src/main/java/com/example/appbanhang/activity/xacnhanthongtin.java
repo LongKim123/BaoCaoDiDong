@@ -1,5 +1,6 @@
 package com.example.appbanhang.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +17,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appbanhang.R;
+import com.example.appbanhang.ultil.CheckConnection;
 import com.example.appbanhang.ultil.Server;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,13 +50,53 @@ public class xacnhanthongtin extends AppCompatActivity {
         StringRequest stringRequest=new StringRequest(Request.Method.POST, Server.Duongdanchitietdonhang, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if(response.trim().equals("1")){
-                    Toast.makeText(getApplicationContext(),"Xác nhận mua hàng",Toast.LENGTH_LONG).show();
-                }
-                else {
-                    Toast.makeText(getApplicationContext(),"Login that bai",Toast.LENGTH_LONG).show();
+                RequestQueue requestQueue1=Volley.newRequestQueue(getApplicationContext());
+                StringRequest request=new StringRequest(Request.Method.POST, Server.chitiet, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if(response.trim().equals("2")) {
+                            MainActivity.manggiohang.clear();
+                            CheckConnection.ShowToast_Short(getApplicationContext(), "Mua hàng ròi nha");
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                            CheckConnection.ShowToast_Short(getApplicationContext(), "Mua hàng tiếp");
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(),"Mua thất bại",Toast.LENGTH_LONG).show();
 
-                }
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        JSONArray jsonArray= new JSONArray();
+                        for(int i=0;i<MainActivity.manggiohang.size();i++){
+                            JSONObject jsonObject= new JSONObject();
+                            try{
+                                jsonObject.put("masanpham",MainActivity.manggiohang.get(i).getIdsp());
+                                jsonObject.put("tensanpham",MainActivity.manggiohang.get(i).getTensp());
+                                jsonObject.put("giasanpham",MainActivity.manggiohang.get(i).getGiasp());
+                                jsonObject.put("soluongsanpham",MainActivity.manggiohang.get(i).getSoluongsp());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            jsonArray .put(jsonObject);
+
+                        }
+                        HashMap<String,String> hashMap=new HashMap<String,String>();
+                        hashMap.put("json",jsonArray.toString());
+                        return hashMap;
+
+                    }
+                };
+                requestQueue1.add(request);
+
             }
         }, new Response.ErrorListener() {
             @Override
