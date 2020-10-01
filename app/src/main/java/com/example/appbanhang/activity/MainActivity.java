@@ -169,6 +169,10 @@ public class MainActivity extends AppCompatActivity {
                         }
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
+                    case 5:
+                        Intent intent= new Intent(MainActivity.this,Register.class);
+
+                        startActivity(intent);
 
                 }
             }

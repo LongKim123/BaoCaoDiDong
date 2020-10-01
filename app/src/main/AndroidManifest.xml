@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.UpdateSanpham"></activity>
+        <activity android:name=".activity.xacnhanthongtin"></activity>
+        <activity android:name=".activity.Register" />
+        <activity android:name=".activity.UpdateSanpham" />
         <activity android:name=".activity.AddSanPham" />
         <activity android:name=".activity.SearchActivity" />
         <activity android:name=".activity.Quanlysanpham" />

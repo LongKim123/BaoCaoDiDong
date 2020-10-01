@@ -25,16 +25,16 @@
         <EditText
             android:layout_marginLeft="5dp"
             android:layout_marginTop="35dp"
-            android:id="@+id/edittexttenkhachhang"
+            android:id="@+id/edittextusername"
             android:inputType="text"
-            android:hint="Nhập tên khách hàng"
+            android:hint="Username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <EditText
             android:layout_marginLeft="5dp"
             android:layout_marginTop="35dp"
-            android:id="@+id/edittextsdt"
-            android:hint="Nhập số điện thoại"
+            android:id="@+id/edittextpassword"
+            android:hint="Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <EditText
@@ -42,6 +42,20 @@
             android:layout_marginTop="35dp"
             android:hint="Nhập email"
             android:id="@+id/edittextemail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="35dp"
+            android:hint="Nhập số điện thoại"
+            android:id="@+id/editsdt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="35dp"
+            android:hint="Nhập địa chỉ"
+            android:id="@+id/editdiachi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <LinearLayout

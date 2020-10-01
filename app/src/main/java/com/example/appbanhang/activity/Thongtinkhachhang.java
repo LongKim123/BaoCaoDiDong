@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Thongtinkhachhang extends AppCompatActivity {
-    EditText edttenkhachhang,edtemail,edtsdt;
+    EditText edtusername,edtemail,edtsdt,edtpassword,edtdiachi;
     Button btnxacnhan,btntrove;
 
     @Override
@@ -49,31 +50,41 @@ public class Thongtinkhachhang extends AppCompatActivity {
         btnxacnhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               final String ten=edttenkhachhang.getText().toString().trim();
+               final String ten=edtusername.getText().toString().trim();
                final String sdt=edtsdt.getText().toString().trim();
                final String email=edtemail.getText().toString().trim();
+               final String password=edtpassword.getText().toString().trim();
+                final String diachi=edtdiachi.getText().toString().trim();
                 if(ten.length()>0&& sdt.length()>0 && email.length()>0){
                     RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                     StringRequest  stringRequest= new StringRequest(Request.Method.POST, Server.Duongdandonhang, new Response.Listener<String>() {
                         @Override
                         public void onResponse(final String madonhang) {
-                            MainActivity.manggiohang.clear();
-                            CheckConnection.ShowToast_Short(getApplicationContext(),"Xin Chúc Mừng Bạn Đã Đặt Hàng Thành Công");
-                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                            startActivity(intent);
-                            CheckConnection.ShowToast_Short(getApplicationContext(),"Xin Mời Tiếp Tục Chon Và Mua Hàng");
+                            if(madonhang.trim().equals("1")) {
+
+                                MainActivity.manggiohang.clear();
+                                CheckConnection.ShowToast_Short(getApplicationContext(), "Đăng ký tài khoản thành công");
+                                Intent intent = new Intent(getApplicationContext(), Register.class);
+                                startActivity(intent);
+                                CheckConnection.ShowToast_Short(getApplicationContext(), "Mời đăng nhập");
+                            }
+                            else {
+                                Toast.makeText(getApplicationContext(),"Login that bai",Toast.LENGTH_LONG).show();
+
+                            }
                         }
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             CheckConnection.ShowToast_Short(getApplicationContext(),error.toString());
-
                         }
                     }){
                         @Override
                         protected Map<String, String> getParams() throws AuthFailureError {
                             HashMap<String ,String> hashMap= new HashMap<String,String>();
-                            hashMap.put("tenkhachhang",ten);
+                            hashMap.put("Username",ten);
+                            hashMap.put("Password",password);
+                            hashMap.put("diachi",diachi);
                             hashMap.put("sodienthoai",sdt);
                             hashMap.put("email",email);
                             return hashMap;
@@ -92,9 +103,11 @@ public class Thongtinkhachhang extends AppCompatActivity {
     }
 
     private void addViews() {
-        edttenkhachhang= (EditText) findViewById(R.id.edittexttenkhachhang);
+        edtusername= (EditText) findViewById(R.id.edittextusername);
         edtemail= (EditText) findViewById(R.id.edittextemail);
-        edtsdt= (EditText) findViewById(R.id.edittextsdt);
+        edtsdt= (EditText) findViewById(R.id.editsdt);
+        edtdiachi= (EditText) findViewById(R.id.editdiachi);
+        edtpassword= (EditText) findViewById(R.id.edittextpassword);
         btntrove= (Button) findViewById(R.id.buttontrove);
         btnxacnhan= (Button) findViewById(R.id.buttonxacnhan);
     }

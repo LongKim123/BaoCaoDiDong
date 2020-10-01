@@ -43,7 +43,7 @@ public class Giohang extends AppCompatActivity {
         btntieptucmua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(Giohang.this,MainActivity.class);
+                Intent intent=new Intent(Giohang.this,Register.class);
                 startActivity(intent);
             }
         });
@@ -52,7 +52,7 @@ public class Giohang extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(MainActivity.manggiohang.size()>0){
-                    Intent intent=new Intent(Giohang.this,Thongtinkhachhang.class);
+                    Intent intent=new Intent(Giohang.this,xacnhanthongtin.class);
                     startActivity(intent);
                 }
                 else{

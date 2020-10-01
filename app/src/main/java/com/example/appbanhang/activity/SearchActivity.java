@@ -87,8 +87,14 @@ public class SearchActivity extends AppCompatActivity {
                             sanphamAdapter.notifyDataSetChanged();
                         }
                     } catch (JSONException e) {
+                        Toast.makeText(SearchActivity.this,"Không có thông tin như yêu cầu",Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
+                }
+                else{
+                    Toast.makeText(SearchActivity.this,"Không có thông tin như yêu cầu",Toast.LENGTH_SHORT).show();
+
+
                 }
 
 
