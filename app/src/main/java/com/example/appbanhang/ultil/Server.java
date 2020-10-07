@@ -6,7 +6,8 @@ public class Server {
 
     //wifi o nha http://192.168.1.215
     //192.168.43.198
-    public static String localhost="http://192.168.1.129";
+    //public static String localhost="http://192.168.1.215";
+    public static String localhost="http://192.168.1.122";
     public static String Duongdanloaisp =localhost + "/server/getloaisp.php";
     public  static  String Duongdansanphammoinhat =localhost + "/server/getsanphammoinhat.php";
     public static String Duongdansanpham = localhost + "/server/getsanpham.php?page=";

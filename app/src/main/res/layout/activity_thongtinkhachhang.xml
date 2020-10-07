@@ -9,13 +9,12 @@
     tools:context=".activity.Thongtinkhachhang">
 
     <LinearLayout
-        android:background="@drawable/banner2"
         android:orientation="vertical"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:text="THÔNG TIN KHÁCH HÀNG"
+            android:text="Đăng Ký Thông Tin"
             android:textSize="30sp"
             android:textColor="#060707"
             android:textStyle="bold"
@@ -30,13 +29,34 @@
             android:hint="Username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true">
+
         <EditText
+            android:inputType="textPassword"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="35dp"
             android:id="@+id/edittextpassword"
             android:hint="Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true">
+
+            <EditText
+                android:inputType="textPassword"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="35dp"
+                android:id="@+id/c_password"
+                android:hint="Confrim Password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
         <EditText
             android:layout_marginLeft="5dp"
             android:layout_marginTop="35dp"
@@ -58,6 +78,11 @@
             android:id="@+id/editdiachi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            ></ProgressBar>
         <LinearLayout
             android:layout_marginTop="35dp"
             android:orientation="horizontal"

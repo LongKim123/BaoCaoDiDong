@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.Session">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thông Tin Người Dùng"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:paddingTop="20dp"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:background="@drawable/thongtin"
+        android:layout_marginBottom="30dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/idnamesession"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:text=""/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/idemailsession"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="30sp"/>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Đăng Xuất"
+        android:id="@+id/btndangxuats"/>
+
+</LinearLayout>

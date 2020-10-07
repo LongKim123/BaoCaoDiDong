@@ -39,6 +39,8 @@ public class xacnhanthongtin extends AppCompatActivity {
         btnxacnhanmua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 Xacnhanmua();
             }
         });
@@ -49,55 +51,61 @@ public class xacnhanthongtin extends AppCompatActivity {
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         StringRequest stringRequest=new StringRequest(Request.Method.POST, Server.Duongdanchitietdonhang, new Response.Listener<String>() {
             @Override
-            public void onResponse(String response) {
-                RequestQueue requestQueue1=Volley.newRequestQueue(getApplicationContext());
-                StringRequest request=new StringRequest(Request.Method.POST, Server.chitiet, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        if(response.trim().equals("2")) {
-                            MainActivity.manggiohang.clear();
-                            CheckConnection.ShowToast_Short(getApplicationContext(), "Mua hàng ròi nha");
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(intent);
-                            CheckConnection.ShowToast_Short(getApplicationContext(), "Mua hàng tiếp");
-                        }
-                        else {
-                            Toast.makeText(getApplicationContext(),"Mua thất bại",Toast.LENGTH_LONG).show();
+            public void onResponse(String donhang) {
+                if (donhang.trim().equals("dung")) {
 
-                        }
+                    RequestQueue requestQueue1 = Volley.newRequestQueue(getApplicationContext());
+                    StringRequest request = new StringRequest(Request.Method.POST, Server.chitiet, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            if (response.trim().equals("2")) {
+                                MainActivity.manggiohang.clear();
+                                CheckConnection.ShowToast_Short(getApplicationContext(), "Mua hàng ròi nha");
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+                                CheckConnection.ShowToast_Short(getApplicationContext(), "Mua hàng tiếp");
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Mua thất bại", Toast.LENGTH_LONG).show();
 
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                }){
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        JSONArray jsonArray= new JSONArray();
-                        for(int i=0;i<MainActivity.manggiohang.size();i++){
-                            JSONObject jsonObject= new JSONObject();
-                            try{
-                                jsonObject.put("masanpham",MainActivity.manggiohang.get(i).getIdsp());
-                                jsonObject.put("tensanpham",MainActivity.manggiohang.get(i).getTensp());
-                                jsonObject.put("giasanpham",MainActivity.manggiohang.get(i).getGiasp());
-                                jsonObject.put("soluongsanpham",MainActivity.manggiohang.get(i).getSoluongsp());
-                            } catch (JSONException e) {
-                                e.printStackTrace();
                             }
-                            jsonArray .put(jsonObject);
 
                         }
-                        HashMap<String,String> hashMap=new HashMap<String,String>();
-                        hashMap.put("json",jsonArray.toString());
-                        return hashMap;
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
 
-                    }
-                };
-                requestQueue1.add(request);
+                        }
+                    }) {
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            JSONArray jsonArray = new JSONArray();
+                            for (int i = 0; i < MainActivity.manggiohang.size(); i++) {
+                                JSONObject jsonObject = new JSONObject();
+                                try {
+                                    jsonObject.put("masanpham", MainActivity.manggiohang.get(i).getIdsp());
+                                    jsonObject.put("tensanpham", MainActivity.manggiohang.get(i).getTensp());
+                                    jsonObject.put("giasanpham", MainActivity.manggiohang.get(i).getGiasp());
+                                    jsonObject.put("soluongsanpham", MainActivity.manggiohang.get(i).getSoluongsp());
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                jsonArray.put(jsonObject);
 
+                            }
+                            HashMap<String, String> hashMap = new HashMap<String, String>();
+                            hashMap.put("json", jsonArray.toString());
+                            return hashMap;
+
+                        }
+                    };
+                    requestQueue1.add(request);
+
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "kiểm tra lại thông tin", Toast.LENGTH_LONG).show();
+                }
             }
+
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {

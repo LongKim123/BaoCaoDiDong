@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Thongtinkhachhang extends AppCompatActivity {
-    EditText edtusername,edtemail,edtsdt,edtpassword,edtdiachi;
+    EditText edtusername,edtemail,edtsdt,edtpassword,edtdiachi,edtconfimpass;
     Button btnxacnhan,btntrove;
 
     @Override
@@ -51,18 +51,19 @@ public class Thongtinkhachhang extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                final String ten=edtusername.getText().toString().trim();
+               final String c_password=edtconfimpass.getText().toString().trim();
                final String sdt=edtsdt.getText().toString().trim();
                final String email=edtemail.getText().toString().trim();
                final String password=edtpassword.getText().toString().trim();
                 final String diachi=edtdiachi.getText().toString().trim();
-                if(ten.length()>0&& sdt.length()>0 && email.length()>0){
+                if(ten.length()>0&& sdt.length()>0 && email.length()>0 && diachi.length()>0 && c_password.length()>0&& password.equals(c_password)){
                     RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                     StringRequest  stringRequest= new StringRequest(Request.Method.POST, Server.Duongdandonhang, new Response.Listener<String>() {
                         @Override
                         public void onResponse(final String madonhang) {
                             if(madonhang.trim().equals("1")) {
 
-                                MainActivity.manggiohang.clear();
+
                                 CheckConnection.ShowToast_Short(getApplicationContext(), "Đăng ký tài khoản thành công");
                                 Intent intent = new Intent(getApplicationContext(), Register.class);
                                 startActivity(intent);
@@ -94,7 +95,7 @@ public class Thongtinkhachhang extends AppCompatActivity {
 
                 }
                 else{
-                    CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại kết nối");
+                    CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra thông tin");
 
                 }
 
@@ -110,5 +111,7 @@ public class Thongtinkhachhang extends AppCompatActivity {
         edtpassword= (EditText) findViewById(R.id.edittextpassword);
         btntrove= (Button) findViewById(R.id.buttontrove);
         btnxacnhan= (Button) findViewById(R.id.buttonxacnhan);
+        edtconfimpass=(EditText) findViewById(R.id.c_password);
+
     }
 }

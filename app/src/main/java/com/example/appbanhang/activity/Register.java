@@ -20,17 +20,26 @@ import com.example.appbanhang.R;
 import com.example.appbanhang.ultil.CheckConnection;
 import com.example.appbanhang.ultil.Server;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class Register extends AppCompatActivity {
     Button btnLogin ,btnRegister;
     EditText edtusername,edtpassword;
+    String username="";
+    String email="";
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        sessionManager= new SessionManager(this);
+
         AnhXa();
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,21 +62,48 @@ public class Register extends AppCompatActivity {
         StringRequest stringRequest=new StringRequest(Request.Method.POST, Server.login, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if(response.trim().equals("2")){
-                    Toast.makeText(getApplicationContext(),"Login thành công đây là tài khoản người dùng",Toast.LENGTH_LONG).show();
-                }
-                else if(response.trim().equals("1")){
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                    startActivity(intent);
-                    CheckConnection.ShowToast_Short(getApplicationContext(),"Đăng nhập thành công.Chào mừng quản lý tới với cửa hàng");
+               // if(response.trim().equals("2")){
+                 //   Toast.makeText(getApplicationContext(),"Login thành công đây là tài khoản người dùng",Toast.LENGTH_LONG).show();
+                //}
+                //else if(response.trim().equals("1")){
+                  //  Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    //startActivity(intent);
+                    //CheckConnection.ShowToast_Short(getApplicationContext(),"Đăng nhập thành công.Chào mừng quản lý tới với cửa hàng");
 
-                }
-                else {
-                    Toast.makeText(getApplicationContext(),"Login that bai",Toast.LENGTH_LONG).show();
+               // }
+               // else {
+                   // Toast.makeText(getApplicationContext(),"Login that bai",Toast.LENGTH_LONG).show();
 
+                //}
+
+                    try {
+
+                        JSONObject jsonObject= new JSONObject(response);
+                        String success=jsonObject.getString("success");
+                        JSONArray jsonArray=jsonObject.getJSONArray("login");
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
+
+                            JSONObject object= jsonArray.getJSONObject(i);
+
+                            String username = object.getString("username").trim();
+                            String email = object.getString("email").trim();
+                            sessionManager.createsesstion(username,email);
+                            Intent intent = new Intent(Register.this,MainActivity.class);
+                            intent.putExtra("username",username);
+                            intent.putExtra("email",email);
+
+                            startActivity(intent);
+                            finish();
+                            CheckConnection.ShowToast_Short(getApplicationContext(),"Đăng nhập thành công.Chào mừng quản lý tới với cửa hàng"+email);
+
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
 
-            }
+
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {

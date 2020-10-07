@@ -108,8 +108,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
+        getMenuInflater().inflate(R.menu.thongtincanhan,menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected( MenuItem item) {
@@ -117,8 +119,20 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menugiohang:
                 Intent intent= new Intent(getApplicationContext(), com.example.appbanhang.activity.Giohang.class);
                 startActivity(intent);
+
         }
+        if(item.getItemId()==R.id.thongtincanhan){
+            thongtin();
+        }
+
         return super.onOptionsItemSelected(item);
+    }
+    private void thongtin(){
+        Intent intent= new Intent(getApplicationContext(), com.example.appbanhang.activity.Session.class);
+        startActivity(intent);
+       // Dialog dialogthongtin=new Dialog(this);
+       // dialogthongtin.setContentView(R.layout.thongtin);
+        //dialogthongtin.show();
     }
 
     private void addEvents() {
